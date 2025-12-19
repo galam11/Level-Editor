@@ -12,4 +12,4 @@ const char LADDER			= 'H';
 const char RAIL				= '-';
 const char EMPTY			= ' ';
 
-const int CELL_SIZE			= 15;
+const int CELL_SIZE			= 25;

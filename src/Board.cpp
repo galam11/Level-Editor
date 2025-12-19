@@ -2,6 +2,7 @@
 #include <fstream>
 #include "macros.h"
 
+#include <iostream>
 
 void Board::save()
 {
@@ -26,15 +27,23 @@ bool Board::load()
 	std::ifstream fileInput(FILE_PATH);
 
 	if (!fileInput.is_open())
-	{
 		return false;
-	}
 	
 	fileInput >> m_height;
+	fileInput.get();
+
+	m_boardData.resize(m_height);
 	for (int i = 0; i < m_height; i++)
 	{
-		while (fileInput.peek() != '\n')
-			m_boardData[i].push_back(fileInput.get());
+		std::cout << i << ": ";
+
+		char input = fileInput.get();
+		while (input != '\n' && !fileInput.eof())
+		{
+			m_boardData[i].push_back(input);
+			input = fileInput.get();
+		}
+		std::cout << std::endl;
 	}
 	m_width = m_boardData[0].size();
 	fileInput.close();
@@ -61,17 +70,47 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 void Board::draw(sf::RenderWindow& window)
 {
+
+	sf::RectangleShape rect;
+
+	rect.setFillColor(sf::Color::Green);
+	rect.setSize({ CELL_SIZE - 1, CELL_SIZE - 1 });
+
 	for (int x = 0; x < m_width; x++)
 	{
 		for (int y = 0; y < m_height; y++)
 		{
-			sf::RectangleShape rect;
+			switch (m_boardData[y][x])
+			{
+				case PLAYER:
+					rect.setFillColor(sf::Color::Blue);
+					break;
+				case ENEMY:
+					rect.setFillColor(sf::Color::Red);
+					break;
+				case COIN:
+					rect.setFillColor(sf::Color::Yellow);
+					break;
+				case FLOOR:
+					rect.setFillColor(sf::Color{ 210, 210, 210 });
+					break;
+				case BREAKABLE_FLOOR:
+					rect.setFillColor(sf::Color{ 210, 210, 240 });
+					break;
+				case LADDER:
+					rect.setFillColor(sf::Color{ 150 , 75 , 0 });
+					break;
+				case RAIL:
+					rect.setFillColor(sf::Color{ 0 , 75 , 150 });
+					break;
+			default:
+				break;
+			}
 
-			rect.setFillColor(sf::Color::Green);
-			rect.setOutlineThickness(5.f);
-			rect.setOutlineColor(sf::Color::White);
+			if (m_boardData[y][x] == EMPTY)
+				continue;
+
 			rect.setPosition({(float) x * CELL_SIZE, (float) y * CELL_SIZE});
-
 			window.draw(rect);
 		}
 	}
