@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 const std::string BOARD_FILE_PATH		= "Board.txt";
-const std::string TOOL_BAR_FILE_PATH	= "ToolBarConfig.txt";
+const std::string TOOL_BAR_FILE_PATH	= "ToolBar.txt";
 
 const char PLAYER						= '@';
 const char ENEMY						= '%';

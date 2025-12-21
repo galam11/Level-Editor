@@ -47,7 +47,9 @@ void ToolBar::createButtonsFromFile()
 	for (int i = 0; !fileInput.eof(); i++)
 	{
 		char type;
-		fileInput >> type;
-		m_buttons.emplace_back(type, sf::Vector2f(m_topLeft.x + i * (BUTTON_HEIGHT + TOOL_BAR_OFFSET), m_topLeft.y));
+		if ((type = fileInput.get()) == -1)
+			break;
+
+		m_buttons.emplace_back(type, sf::Vector2f(m_topLeft.x + i * (BUTTON_WIDTH + TOOL_BAR_OFFSET), m_topLeft.y));
 	}
 }

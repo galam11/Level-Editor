@@ -18,5 +18,4 @@ private:
 	char active_button = EMPTY;
 
 	void createButtonsFromFile();
-
 };
