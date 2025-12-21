@@ -34,6 +34,10 @@ bool Board::load()
 	fileInput >> m_height;
 	fileInput.get();
 
+	if (m_height < 0)
+		return false;
+	
+
 	m_boardData.resize(m_height);
 	for (int i = 0; i < m_height; i++)
 	{
@@ -46,20 +50,27 @@ bool Board::load()
 	}
 	m_width = m_boardData[0].size();
 	fileInput.close();
+
+
+	if (m_width < 0)
+		return false;
+	
 	return true;
 }
 
 void Board::clear()
 {
-	if (!(m_height && m_width))
-		m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
+	m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
 }
 
 void Board::createEmptyBoard(int width, int height)
 {
-	m_width = width;
-	m_height = height;
-	clear();
+	if (width > 0 && height > 0)
+	{
+		m_width = width;
+		m_height = height;
+		clear();
+	}
 }
 
 void Board::setCell(sf::Vector2i pos, char value)

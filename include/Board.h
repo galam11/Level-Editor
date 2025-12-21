@@ -18,6 +18,6 @@ public:
 private:
 	std::vector<std::vector<char>> m_boardData;
 	sf::Vector2f m_topLeft;
-	int m_width = 0;
-	int m_height = 0;
+	int m_width = 1;
+	int m_height = 1;
 };
