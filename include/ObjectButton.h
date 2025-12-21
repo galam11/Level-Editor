@@ -1,20 +1,20 @@
 #pragma once
-#include "Board.h"
+#include "Button.h"
 #include <SFML/Graphics.hpp>
 
 
 class ObjectButton
 {
 public:
-	ObjectButton(char type, sf::Vector2f bottom_left, sf::Vector2f top_right);
+	ObjectButton(char type, sf::Vector2f top_left);
 
-	void draw(sf::RenderWindow& window);
-	void clicked();
+	void draw(sf::RenderWindow& window) const;
+	bool clicked(sf::Vector2i mouse_pos);
 	void turnOff();
+	char getType() const;
 
 private:
 	const char m_type;
-	const sf::Vector2f m_bottom_left;
-	const sf::Vector2f m_top_right;
-	bool m_active;
+	const Button m_button;
+	bool m_active = false;
 };

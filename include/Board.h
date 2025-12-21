@@ -7,7 +7,7 @@ class Board
 public:
 	Board() = default;
 
-	void save();
+	void save() const;
 	void clear();
 	bool load();
 
@@ -17,6 +17,6 @@ public:
 	void draw(sf::RenderWindow& window);
 private:
 	std::vector<std::vector<char>> m_boardData;
-	int m_width;
-	int m_height;
+	int m_width = 0;
+	int m_height = 0;
 };

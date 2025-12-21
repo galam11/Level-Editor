@@ -1,11 +1,12 @@
 #include "Controller.h"
+#include "ObjectButton.h"
 #include "macros.h"
 
 Controller::Controller()
-	: m_window(sf::VideoMode({ 1200, 800 }), "Level Editor")
+	: m_window(sf::VideoMode({ 1200, 800 }), "Level Editor"), m_toolBar({ 50.f, 50.f })
 {
-	//m_board.createEmptyBoard(10, 10);
-	if (!m_board.load()) exit(EXIT_FAILURE);
+	if (!m_board.load()) 
+		exit(EXIT_FAILURE);
 }
 
 void Controller::run()
@@ -17,8 +18,8 @@ void Controller::run()
 
 		m_window.clear();
 
-		m_board.draw(m_window);
-
+		//m_board.draw(m_window);
+		m_toolBar.draw(m_window);
 		m_window.display();
 	}
 }
@@ -30,7 +31,7 @@ void Controller::handleEvent(const sf::Event::Closed& event)
 
 void Controller::handleEvent(const sf::Event::MouseButtonReleased& event)
 {
-
+	m_toolBar.clicked(event.position);
 }
 
 void Controller::handleEvent(const auto&) {}

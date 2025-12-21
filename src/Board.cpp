@@ -4,9 +4,9 @@
 
 #include <iostream>
 
-void Board::save()
+void Board::save() const
 {
-	std::ofstream fileOutput(FILE_PATH);
+	std::ofstream fileOutput(BOARD_FILE_PATH);
 
 	if (!fileOutput.is_open())
 		return;
@@ -24,7 +24,7 @@ void Board::save()
 
 bool Board::load()
 {
-	std::ifstream fileInput(FILE_PATH);
+	std::ifstream fileInput(BOARD_FILE_PATH);
 
 	if (!fileInput.is_open())
 		return false;
@@ -35,15 +35,12 @@ bool Board::load()
 	m_boardData.resize(m_height);
 	for (int i = 0; i < m_height; i++)
 	{
-		std::cout << i << ": ";
-
 		char input = fileInput.get();
 		while (input != '\n' && !fileInput.eof())
 		{
 			m_boardData[i].push_back(input);
 			input = fileInput.get();
 		}
-		std::cout << std::endl;
 	}
 	m_width = m_boardData[0].size();
 	fileInput.close();
@@ -52,6 +49,7 @@ bool Board::load()
 
 void Board::clear()
 {
+	if (!(m_height && m_width))
 	m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
 }
 
@@ -70,7 +68,6 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 void Board::draw(sf::RenderWindow& window)
 {
-
 	sf::RectangleShape rect;
 
 	rect.setFillColor(sf::Color::Green);

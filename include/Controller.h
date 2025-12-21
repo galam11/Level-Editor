@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Board.h"
-
+#include "ToolBar.h"
 class Controller
 {
 public:
@@ -9,11 +9,12 @@ public:
 
 	void run();
 private:
-
 	void handleEvent(const auto&);
 	void handleEvent(const sf::Event::MouseButtonReleased& event);
 	void handleEvent(const sf::Event::Closed& event);
 
 	sf::RenderWindow m_window;
 	Board m_board;
+
+	ToolBar m_toolBar;
 };

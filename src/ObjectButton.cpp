@@ -1,6 +1,41 @@
 #include "ObjectButton.h"
 #include <SFML/Graphics.hpp>
+#include "macros.h"
 
-ObjectButton::ObjectButton(char type, sf::Vector2f bottom_left, sf::Vector2f top_right)
-    : m_type(type), m_bottom_left(bottom_left), m_top_right(top_right), m_active(false) {}
+ObjectButton::ObjectButton(char type, sf::Vector2f top_left)
+    : m_type(type), m_button(top_left) {}
 
+
+bool ObjectButton::clicked(sf::Vector2i mouse_pos)
+{
+    if (m_button.clicked(mouse_pos))
+    {
+        m_active = true;
+        //todo
+		return true;
+    }
+    return false;
+}
+
+void ObjectButton::turnOff()
+{
+	m_active = false;
+}
+
+char ObjectButton::getType() const
+{
+	return m_type;
+}
+
+void ObjectButton::draw(sf::RenderWindow& window) const
+{
+    if (m_active)
+    {
+        sf::RectangleShape activeShape;
+        activeShape.setPosition(m_button.getTopLeft());
+        activeShape.setSize({ BUTTON_WIDTH, BUTTON_HEIGHT });
+        activeShape.setFillColor(sf::Color::Yellow);
+        window.draw(activeShape);
+	}
+    else m_button.draw(window);
+}
