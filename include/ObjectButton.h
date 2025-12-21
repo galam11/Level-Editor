@@ -2,7 +2,6 @@
 #include "Button.h"
 #include <SFML/Graphics.hpp>
 
-
 class ObjectButton
 {
 public:

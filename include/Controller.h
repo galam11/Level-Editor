@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Board.h"
 #include "ToolBar.h"
+
 class Controller
 {
 public:
@@ -14,7 +15,6 @@ private:
 	void handleEvent(const sf::Event::Closed& event);
 
 	sf::RenderWindow m_window;
-	Board m_board;
-
 	ToolBar m_toolBar;
+	Board m_board;
 };

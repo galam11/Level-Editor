@@ -21,5 +21,4 @@ const float TOOL_BAR_OFFSET				= 5;
 const float BUTTON_WIDTH				= 60;
 const float BUTTON_HEIGHT				= 30;
 
-
 const sf::Vector2f BUTTON_SIZE			= sf::Vector2f(BUTTON_WIDTH, BUTTON_HEIGHT);

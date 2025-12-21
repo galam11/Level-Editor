@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+Board::Board(sf::Vector2f top_left) : m_topLeft(top_left){}
+
 void Board::save() const
 {
 	std::ofstream fileOutput(BOARD_FILE_PATH);
@@ -50,7 +52,7 @@ bool Board::load()
 void Board::clear()
 {
 	if (!(m_height && m_width))
-	m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
+		m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
 }
 
 void Board::createEmptyBoard(int width, int height)
@@ -70,7 +72,13 @@ void Board::draw(sf::RenderWindow& window)
 {
 	sf::RectangleShape rect;
 
-	rect.setFillColor(sf::Color::Green);
+	rect.setPosition(m_topLeft);
+	rect.setSize({ m_width * CELL_SIZE , m_height * CELL_SIZE });
+	rect.setFillColor(sf::Color(50,50,50));
+	
+	window.draw(rect);
+
+
 	rect.setSize({ CELL_SIZE - 1, CELL_SIZE - 1 });
 
 	for (int x = 0; x < m_width; x++)
@@ -107,7 +115,7 @@ void Board::draw(sf::RenderWindow& window)
 			if (m_boardData[y][x] == EMPTY)
 				continue;
 
-			rect.setPosition({(float) x * CELL_SIZE, (float) y * CELL_SIZE});
+			rect.setPosition(m_topLeft + sf::Vector2f((float) x * CELL_SIZE, (float) y * CELL_SIZE));
 			window.draw(rect);
 		}
 	}
