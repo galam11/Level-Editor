@@ -9,8 +9,8 @@
 
 ToolBar::ToolBar(sf::Vector2f topLeft) : 
 	m_topLeft(topLeft),
-	m_clearButton(topLeft + sf::Vector2f(0, BUTTON_HEIGHT + TOOL_BAR_OFFSET)),
-	m_saveButton(topLeft + sf::Vector2f(BUTTON_WIDTH + TOOL_BAR_OFFSET, BUTTON_HEIGHT + TOOL_BAR_OFFSET))
+	m_clearButton(topLeft),
+	m_saveButton(topLeft + sf::Vector2f(0, BUTTON_HEIGHT + TOOL_BAR_OFFSET))
 {
 	createButtonsFromFile();
 }
@@ -53,12 +53,12 @@ void ToolBar::createButtonsFromFile()
 	if (!fileInput.is_open())
 		return;
 
-	for (int i = 0; !fileInput.eof(); i++)
+	for (int i = 2; !fileInput.eof(); i++)
 	{
 		char type;
 		if ((type = fileInput.get()) == -1)
 			break;
 
-		m_objectButtons.emplace_back(type, sf::Vector2f(m_topLeft.x + i * (BUTTON_WIDTH + TOOL_BAR_OFFSET), m_topLeft.y));
+		m_objectButtons.emplace_back(type, sf::Vector2f(m_topLeft.x, m_topLeft.y + i * (BUTTON_HEIGHT + TOOL_BAR_OFFSET)));
 	}
 }
