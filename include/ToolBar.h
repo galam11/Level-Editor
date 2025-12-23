@@ -13,8 +13,9 @@ class ToolBar
 public:
 	ToolBar(sf::Vector2f topLeft);
 	
-	void clicked(sf::Event::MouseButtonReleased mouse_pos, Board& board);
+	void clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board);
 	void draw(sf::RenderWindow& window) const;
+	char getActiveButton() const;
 private:
 	std::vector<ObjectButton> m_objectButtons;
 	ClearButton m_clearButton;

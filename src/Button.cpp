@@ -9,7 +9,7 @@ bool Button::clicked(sf::Event::MouseButtonReleased mouse_event) const
 {
 	auto mouse_pos = mouse_event.position;
  
-	return mouse_event.button == sf::Mouse::Button::Right && 
+	return mouse_event.button == sf::Mouse::Button::Left && 
 		(mouse_pos.x >= m_top_left.x && mouse_pos.x <= m_bottom_right.x &&
 		 mouse_pos.y >= m_top_left.y && mouse_pos.y <= m_bottom_right.y);
 }

@@ -34,7 +34,6 @@ void ToolBar::clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board)
 
 	m_clearButton.clicked(mouseEvent, board);
 	m_saveButton.clicked(mouseEvent, board);
-
 }
 
 void ToolBar::draw(sf::RenderWindow& window) const
@@ -44,6 +43,11 @@ void ToolBar::draw(sf::RenderWindow& window) const
 
 	m_clearButton.draw(window);
 	m_saveButton.draw(window);
+}
+
+char ToolBar::getActiveButton() const
+{
+	return m_activeButton;
 }
 
 void ToolBar::createButtonsFromFile()

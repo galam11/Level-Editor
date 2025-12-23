@@ -13,9 +13,12 @@ public:
 
 	void createEmptyBoard(int width, int height);
 	void setCell(sf::Vector2i pos, char value);
+	sf::Vector2i mouseToGridLocation(const sf::Event::MouseMoved& event) const;
 
 	void draw(sf::RenderWindow& window);
 private:
+	bool inBounds(const sf::Vector2i& pos) const;
+
 	std::vector<std::vector<char>> m_boardData;
 	sf::Vector2f m_topLeft;
 	int m_width = 1;

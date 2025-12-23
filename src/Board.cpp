@@ -61,6 +61,8 @@ bool Board::load()
 void Board::clear()
 {
 	m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
+	sf::RectangleShape rect;
+	
 }
 
 void Board::createEmptyBoard(int width, int height)
@@ -75,8 +77,20 @@ void Board::createEmptyBoard(int width, int height)
 
 void Board::setCell(sf::Vector2i pos, char value)
 {
-	if (pos.x >= 0 && pos.x < m_width && pos.y >= 0 && pos.y < m_height)
+	if (inBounds(pos) && m_boardData[pos.y][pos.x] != value)
 		m_boardData[pos.y][pos.x] = value;
+}
+
+sf::Vector2i Board::mouseToGridLocation(const sf::Event::MouseMoved& event) const
+{
+	auto pos = sf::Vector2i(
+		(event.position.x - (int)m_topLeft.x) / CELL_SIZE,
+		(event.position.y - (int)m_topLeft.y) / CELL_SIZE
+	);
+
+	if (inBounds(pos))
+		return pos;
+	return sf::Vector2i(-1, -1);
 }
 
 void Board::draw(sf::RenderWindow& window)
@@ -130,4 +144,9 @@ void Board::draw(sf::RenderWindow& window)
 			window.draw(rect);
 		}
 	}
+}
+
+bool Board::inBounds(const sf::Vector2i& pos) const
+{
+	return pos.x >= 0 && pos.x < m_width && pos.y >= 0 && pos.y < m_height;
 }
