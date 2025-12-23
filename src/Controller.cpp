@@ -34,8 +34,7 @@ void Controller::handleEvent(const sf::Event::Closed& event)
 
 void Controller::handleEvent(const sf::Event::MouseButtonReleased& event)
 {
-	if (event.button == sf::Mouse::Button::Left)
-		m_toolBar.clicked(event.position, m_board);
+	m_toolBar.clicked(event, m_board);
 }
 
 void Controller::handleEvent(const auto&) {}

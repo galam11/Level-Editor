@@ -6,9 +6,9 @@ ObjectButton::ObjectButton(char type, sf::Vector2f top_left)
     : m_type(type), m_button(top_left) {}
 
 
-bool ObjectButton::clicked(sf::Vector2i mouse_pos)
+bool ObjectButton::clicked(sf::Event::MouseButtonReleased mouseEvent)
 {
-    if (m_button.clicked(mouse_pos))
+    if (m_button.clicked(mouseEvent))
     {
         m_active = true;
         //todo

@@ -13,7 +13,7 @@ class ToolBar
 public:
 	ToolBar(sf::Vector2f topLeft);
 	
-	void clicked(sf::Vector2i mouse_pos, Board& board);
+	void clicked(sf::Event::MouseButtonReleased mouse_pos, Board& board);
 	void draw(sf::RenderWindow& window) const;
 private:
 	std::vector<ObjectButton> m_objectButtons;

@@ -15,12 +15,12 @@ ToolBar::ToolBar(sf::Vector2f topLeft) :
 	createButtonsFromFile();
 }
 
-void ToolBar::clicked(sf::Vector2i mouse_pos, Board& board)
+void ToolBar::clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board)
 {
 	int last_clicked_index = -1;
 
 	for (int i = 0; i < m_objectButtons.size(); i++)
-		if (m_objectButtons[i].clicked(mouse_pos))
+		if (m_objectButtons[i].clicked(mouseEvent))
 		{
 			last_clicked_index = i;
 			m_activeButton = m_objectButtons[i].getType();
@@ -32,8 +32,8 @@ void ToolBar::clicked(sf::Vector2i mouse_pos, Board& board)
 			if (i != last_clicked_index)
 				m_objectButtons[i].turnOff();
 
-	m_clearButton.clicked(mouse_pos, board);
-	m_saveButton.clicked(mouse_pos, board);
+	m_clearButton.clicked(mouseEvent, board);
+	m_saveButton.clicked(mouseEvent, board);
 
 }
 

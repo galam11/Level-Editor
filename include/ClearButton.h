@@ -8,7 +8,7 @@ public:
     ClearButton(sf::Vector2f top_left);
 
     void draw(sf::RenderWindow& window) const;
-    void clicked(sf::Vector2i mouse_pos, Board& board) const;
+    void clicked(sf::Event::MouseButtonReleased mouse_pos, Board& board) const;
 
 private:
     const Button m_button;

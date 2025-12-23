@@ -8,9 +8,9 @@ ClearButton::ClearButton(sf::Vector2f top_left)
     : m_button(top_left) {}
 
 
-void ClearButton::clicked(sf::Vector2i mouse_pos, Board& board) const
+void ClearButton::clicked(sf::Event::MouseButtonReleased mouse_event, Board& board) const
 {
-	if (m_button.clicked(mouse_pos))
+	if (m_button.clicked(mouse_event))
 	{
 		board.clear();
 		float height, width;

@@ -6,9 +6,9 @@
 SaveButton::SaveButton(sf::Vector2f top_left)
     : m_button(top_left) {}
 
-void SaveButton::clicked(sf::Vector2i mouse_pos, const Board& board) const
+void SaveButton::clicked(sf::Event::MouseButtonReleased mouse_event, const Board& board) const
 {
-	if (m_button.clicked(mouse_pos))
+	if (m_button.clicked(mouse_event))
 	{
 		board.save();
 	}

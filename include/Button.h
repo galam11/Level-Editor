@@ -8,7 +8,7 @@ class Button
 public:
 	Button(sf::Vector2f top_left);
 
-	bool clicked(sf::Vector2i mouse_pos) const;
+	bool clicked(sf::Event::MouseButtonReleased mouse_pos) const;
 	void draw(sf::RenderWindow& window) const;
 	sf::Vector2f getTopLeft() const;
 
