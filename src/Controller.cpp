@@ -8,7 +8,7 @@ Controller::Controller() :
 	m_board(BOARD_POS)
 {
 	if (!m_board.load()) 
-		exit(EXIT_FAILURE);
+		m_board.createEmptyBoard();
 }
 
 void Controller::run()

@@ -11,7 +11,7 @@ public:
 	void clear();
 	bool load();
 
-	void createEmptyBoard(int width, int height);
+	void createEmptyBoard();
 	void setCell(sf::Vector2i pos, char value);
 	sf::Vector2i mouseToGridLocation(const sf::Event::MouseMoved& event) const;
 

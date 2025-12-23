@@ -12,13 +12,7 @@ void ClearButton::clicked(sf::Event::MouseButtonReleased mouse_event, Board& boa
 {
 	if (m_button.clicked(mouse_event))
 	{
-		board.clear();
-		float height, width;
-		std::cout << "Enter board height: ";
-		std::cin >> height;
-		std::cout << "Enter board width: ";
-		std::cin >> width;
-		board.createEmptyBoard(width, height);
+		board.createEmptyBoard();
 	}
 }
 

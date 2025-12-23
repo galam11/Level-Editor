@@ -68,8 +68,15 @@ void Board::clear()
 	
 }
 
-void Board::createEmptyBoard(int width, int height)
+void Board::createEmptyBoard()
 {
+
+	float height, width;
+	std::cout << "Enter board height: ";
+	std::cin >> height;
+	std::cout << "Enter board width: ";
+	std::cin >> width;
+
 	if (width > 0 && height > 0)
 	{
 		m_width = width;
