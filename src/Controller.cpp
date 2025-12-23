@@ -3,9 +3,9 @@
 #include "macros.h"
 
 Controller::Controller() : 
-	m_window(sf::VideoMode({ 1200, 800 }), "Level Editor"), 
-	m_toolBar({ 10.f, 10.f }),
-	m_board({ 10.f + BUTTON_WIDTH + TOOL_BAR_OFFSET * 2, 10.f })
+	m_window(sf::VideoMode(WINDOW_SIZE), "Level Editor"), 
+	m_toolBar(TOOL_BAR_POS),
+	m_board(BOARD_POS)
 {
 	if (!m_board.load()) 
 		exit(EXIT_FAILURE);
