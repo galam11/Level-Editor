@@ -46,6 +46,9 @@ bool Board::load()
 		{
 			m_boardData[i].push_back(input);
 			input = fileInput.get();
+
+			if (input == PLAYER) 
+				m_playerLocation = sf::Vector2i(m_boardData[i].size() - 1, i);
 		}
 	}
 	m_width = m_boardData[0].size();
@@ -78,7 +81,15 @@ void Board::createEmptyBoard(int width, int height)
 void Board::setCell(sf::Vector2i pos, char value)
 {
 	if (inBounds(pos) && m_boardData[pos.y][pos.x] != value)
+	{
 		m_boardData[pos.y][pos.x] = value;
+
+		if (value == PLAYER)
+		{
+			m_boardData[m_playerLocation.y][m_playerLocation.x] = EMPTY;
+			m_playerLocation = pos;
+		}
+	}
 }
 
 sf::Vector2i Board::mouseToGridLocation(const sf::Event::MouseMoved& event) const

@@ -31,3 +31,4 @@ const sf::Vector2i& BoardCursor::getPosition() const
 {
 	return m_position;
 }
+

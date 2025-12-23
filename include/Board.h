@@ -21,6 +21,7 @@ private:
 
 	std::vector<std::vector<char>> m_boardData;
 	sf::Vector2f m_topLeft;
+	sf::Vector2i m_playerLocation;
 	int m_width = 1;
 	int m_height = 1;
 };

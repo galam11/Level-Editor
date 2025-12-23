@@ -33,24 +33,36 @@ void Controller::handleEvent(const sf::Event::Closed& event)
 	m_window.close();
 }
 
+void Controller::draw()
+{
+	auto pos = m_currser.getPosition();
+	if (pos != sf::Vector2i(-1, -1))
+		m_board.setCell(pos, m_toolBar.getActiveButtonID());
+}
+
 void Controller::handleEvent(const sf::Event::MouseButtonReleased& event)
 {
 	m_toolBar.clicked(event, m_board);
+	
+	if (event.button == sf::Mouse::Button::Left)
+		m_mouseHeld = false;
 }
 
 void Controller::handleEvent(const sf::Event::MouseMoved& event)
 {
 	m_currser.updatePosition(event, m_board);
+
+	if (m_mouseHeld)
+		draw();
 }
 
 void Controller::handleEvent(const sf::Event::MouseButtonPressed& event)
 {
 	if (event.button == sf::Mouse::Button::Left)
 	{
-		auto pos = m_currser.getPosition();
-		if (pos != sf::Vector2i(-1, -1))
-			m_board.setCell(pos, m_toolBar.getActiveButton());
+		m_mouseHeld = true;
+		draw();
 	}
 }
 
-void Controller::handleEvent(const auto&) {}
+void Controller::handleEvent(const auto&) { }

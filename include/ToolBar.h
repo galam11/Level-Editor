@@ -15,7 +15,7 @@ public:
 	
 	void clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board);
 	void draw(sf::RenderWindow& window) const;
-	char getActiveButton() const;
+	char getActiveButtonID() const;
 private:
 	std::vector<ObjectButton> m_objectButtons;
 	ClearButton m_clearButton;

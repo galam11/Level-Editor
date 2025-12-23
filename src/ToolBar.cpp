@@ -45,7 +45,7 @@ void ToolBar::draw(sf::RenderWindow& window) const
 	m_saveButton.draw(window);
 }
 
-char ToolBar::getActiveButton() const
+char ToolBar::getActiveButtonID() const
 {
 	return m_activeButton;
 }
