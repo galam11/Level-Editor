@@ -101,6 +101,9 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 sf::Vector2i Board::mouseToGridLocation(const sf::Event::MouseMoved& event) const
 {
+	if (event.position.x < (int)m_topLeft.x || event.position.y < (int)m_topLeft.y)
+		return sf::Vector2i(-1, -1);
+
 	auto pos = sf::Vector2i(
 		(event.position.x - (int)m_topLeft.x) / CELL_SIZE,
 		(event.position.y - (int)m_topLeft.y) / CELL_SIZE
@@ -128,32 +131,7 @@ void Board::draw(sf::RenderWindow& window)
 	{
 		for (int y = 0; y < m_height; y++)
 		{
-			switch (m_boardData[y][x])
-			{
-				case PLAYER:
-					rect.setFillColor(sf::Color::Blue);
-					break;
-				case ENEMY:
-					rect.setFillColor(sf::Color::Red);
-					break;
-				case COIN:
-					rect.setFillColor(sf::Color::Yellow);
-					break;
-				case FLOOR:
-					rect.setFillColor(sf::Color{ 210, 210, 210 });
-					break;
-				case BREAKABLE_FLOOR:
-					rect.setFillColor(sf::Color{ 210, 210, 240 });
-					break;
-				case LADDER:
-					rect.setFillColor(sf::Color{ 150 , 75 , 0 });
-					break;
-				case RAIL:
-					rect.setFillColor(sf::Color{ 0 , 75 , 150 });
-					break;
-			default:
-				break;
-			}
+			// get texture
 
 			if (m_boardData[y][x] == EMPTY)
 				continue;
