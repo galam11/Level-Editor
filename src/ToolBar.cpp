@@ -30,7 +30,7 @@ void ToolBar::clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board)
 	if (last_clicked_index != -1)
 		for (int i = 0; i < m_objectButtons.size(); i++)
 			if (i != last_clicked_index)
-				m_objectButtons[i].turnOff();
+				m_objectButtons[i].setSelected(false);
 
 	m_clearButton.clicked(mouseEvent, board);
 	m_saveButton.clicked(mouseEvent, board);
@@ -57,12 +57,20 @@ void ToolBar::createButtonsFromFile()
 	if (!fileInput.is_open())
 		return;
 
-	for (int i = 2; !fileInput.eof(); i++)
+	for (int i = 0; !fileInput.eof(); i++)
 	{
 		char type;
 		if ((type = fileInput.get()) == -1)
 			break;
 
-		m_objectButtons.emplace_back(type, sf::Vector2f(m_topLeft.x, m_topLeft.y + i * (BUTTON_HEIGHT + TOOL_BAR_OFFSET)));
+		auto btn = ObjectButton(type, sf::Vector2f(m_topLeft.x, m_topLeft.y + (i + 2) * (BUTTON_HEIGHT + TOOL_BAR_OFFSET)));
+
+		if (i == 0)
+		{
+			m_activeButton = type;
+			btn.setSelected(true);
+		}
+
+		m_objectButtons.push_back(btn);
 	}
 }

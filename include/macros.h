@@ -14,7 +14,7 @@ const char LADDER						= 'H';
 const char RAIL							= '-';
 const char EMPTY						= ' ';
 
-const float CELL_SIZE					= 50;
+const float CELL_SIZE					= 64;
 
 const float TOOL_BAR_OFFSET				= 5;
 

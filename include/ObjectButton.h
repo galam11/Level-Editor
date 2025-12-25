@@ -9,7 +9,7 @@ public:
 
 	void draw(sf::RenderWindow& window, const TextureManager& texture_manager) const;
 	bool clicked(sf::Event::MouseButtonReleased mouseEvent);
-	void turnOff();
+	void setSelected(bool seleced);
 	char getType() const;
 
 private:

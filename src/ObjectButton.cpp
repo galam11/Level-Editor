@@ -11,15 +11,14 @@ bool ObjectButton::clicked(sf::Event::MouseButtonReleased mouseEvent)
     if (m_button.clicked(mouseEvent))
     {
         m_active = true;
-        //todo
 		return true;
     }
     return false;
 }
 
-void ObjectButton::turnOff()
+void ObjectButton::setSelected(bool seleced)
 {
-	m_active = false;
+	m_active = seleced;
 }
 
 char ObjectButton::getType() const
@@ -36,10 +35,9 @@ void ObjectButton::draw(sf::RenderWindow& window, const TextureManager& texture_
 	rect.setOrigin(BUTTON_SIZE / 2.f);
 	
 	rect.setSize(BUTTON_SIZE);
-
 	
     if (m_active)
-        rect.setFillColor(sf::Color::Blue);
+        rect.setFillColor(sf::Color::Yellow);
 	else 
 		rect.setFillColor(sf::Color::White);
 
