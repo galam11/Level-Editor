@@ -3,14 +3,17 @@
 #include <iostream>
 
 TextureManager::TextureManager() {
-    m_textures[PLAYER] = load("player.png");
-    m_textures[ENEMY] = load("enemy.png");
-    m_textures[COIN] = load("coin.png");
-    m_textures[FLOOR] = load("floor.png");
+    m_textures[PLAYER]          = load("player.png");
+    m_textures[ENEMY]           = load("enemy.png");
+    m_textures[COIN]            = load("coin.png");
+    m_textures[FLOOR]           = load("floor.png");
     m_textures[BREAKABLE_FLOOR] = load("breakable_floor.png");
-    m_textures[LADDER] = load("ladder.png");
-    m_textures[RAIL] = load("rail.png");
-    m_textures[ENEMY] = load("empty.png");
+    m_textures[LADDER]          = load("ladder.png");
+    m_textures[RAIL]            = load("rail.png");
+
+	m_buttonTexture             = load("button.png");
+	m_clearButtonTexture        = load("clear_button.png");
+	m_saveButtonTexture         = load("save_button.png");
 }
 
 sf::Texture TextureManager::load(const std::string& filename) {
@@ -22,7 +25,8 @@ sf::Texture TextureManager::load(const std::string& filename) {
     return temp;
 }
 
-const sf::Texture* TextureManager::getTexture(const char id) const {
+const sf::Texture* TextureManager::getTexture(const char id) const 
+{
     auto it = m_textures.find(id);
     if (it != m_textures.end()) {
         return &(it->second);

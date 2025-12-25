@@ -2,7 +2,7 @@
 #include "macros.h"
 #include "SaveButton.h"
 #include "Board.h"
-
+#include "TextureManager.h"
 SaveButton::SaveButton(sf::Vector2f top_left)
     : m_button(top_left) {}
 
@@ -14,16 +14,16 @@ void SaveButton::clicked(sf::Event::MouseButtonReleased mouse_event, const Board
 	}
 }
 
-void SaveButton::draw(sf::RenderWindow& window) const
+void SaveButton::draw(sf::RenderWindow& window, const TextureManager& texture_manager) const
 {
-	m_button.draw(window);
+	sf::RectangleShape rect;
 
-    sf::RectangleShape shape;
-    shape.setFillColor(sf::Color::Blue);
+	rect.setPosition(m_button.getTopLeft());
+	rect.setFillColor(sf::Color::White);
 
-    shape.setPosition(m_button.getTopLeft());
-    shape.setSize(sf::Vector2f(10.f, 10.f));
+	rect.setSize(BUTTON_SIZE);
 
-    window.draw(shape);
-	// todo unique draw logic for SaveButton
+	rect.setTexture(texture_manager.getSaveButtonTexture());
+
+	window.draw(rect);
 }

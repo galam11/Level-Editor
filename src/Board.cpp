@@ -91,7 +91,8 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 		if (value == PLAYER)
 		{
-			m_boardData[m_playerLocation.y][m_playerLocation.x] = EMPTY;
+			if (m_boardData[m_playerLocation.y][m_playerLocation.x] == PLAYER)
+				m_boardData[m_playerLocation.y][m_playerLocation.x] = EMPTY;
 			m_playerLocation = pos;
 		}
 	}
@@ -119,8 +120,8 @@ void Board::draw(sf::RenderWindow& window, const TextureManager& texture_manager
 	
 	window.draw(rect);
 
-
-	rect.setSize({ CELL_SIZE - 1, CELL_SIZE - 1 });
+	rect.setFillColor(sf::Color::White);
+	rect.setSize({ CELL_SIZE, CELL_SIZE });
 
 	for (int x = 0; x < m_width; x++)
 	{

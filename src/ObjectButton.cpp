@@ -27,15 +27,32 @@ char ObjectButton::getType() const
 	return m_type;
 }
 
-void ObjectButton::draw(sf::RenderWindow& window) const
+void ObjectButton::draw(sf::RenderWindow& window, const TextureManager& texture_manager) const
 {
+	sf::RectangleShape rect;
+
+
+	rect.setTexture(texture_manager.getButtonTexture(), true);
+	rect.setPosition(m_button.getTopLeft() + BUTTON_SIZE / 2.f);
+	rect.setOrigin(BUTTON_SIZE / 2.f);
+
+	rect.setFillColor(sf::Color::White);
+	rect.setSize(BUTTON_SIZE);
+    
     if (m_active)
     {
-        sf::RectangleShape activeShape;
-        activeShape.setPosition(m_button.getTopLeft());
-        activeShape.setSize({ BUTTON_WIDTH, BUTTON_HEIGHT });
-        activeShape.setFillColor(sf::Color::Yellow);
-        window.draw(activeShape);
+        rect.setFillColor(sf::Color::White);
 	}
-    else m_button.draw(window);
+    else
+    {
+        rect.setFillColor(sf::Color(225, 225, 225));
+    }
+
+	
+	window.draw(rect);
+
+	rect.setTexture(texture_manager.getTexture(m_type), true);
+	rect.scale(sf::Vector2f(0.7f, 0.7f));
+	
+	window.draw(rect);
 }

@@ -39,10 +39,10 @@ void ToolBar::clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board)
 void ToolBar::draw(sf::RenderWindow& window, const TextureManager& texture_manager) const
 {
 	for (int i = 0; i < m_objectButtons.size(); i++)
-		m_objectButtons[i].draw(window);
+		m_objectButtons[i].draw(window, texture_manager);
 
-	m_clearButton.draw(window);
-	m_saveButton.draw(window);
+	m_clearButton.draw(window, texture_manager);
+	m_saveButton.draw(window, texture_manager);
 }
 
 char ToolBar::getActiveButtonID() const

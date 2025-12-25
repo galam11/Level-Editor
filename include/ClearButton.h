@@ -7,7 +7,7 @@ class ClearButton
 public:
     ClearButton(sf::Vector2f top_left);
 
-    void draw(sf::RenderWindow& window) const;
+    void draw(sf::RenderWindow& window, const TextureManager& texture_manager) const;
     void clicked(sf::Event::MouseButtonReleased mouse_pos, Board& board) const;
 
 private:

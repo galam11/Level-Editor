@@ -3,13 +3,14 @@
 #include <SFML/Graphics.hpp>
 
 class Board;
+class TextureManager;
 
 class SaveButton
 {
 public:
 	SaveButton(sf::Vector2f top_left);
 
-	void draw(sf::RenderWindow& window) const;
+	void draw(sf::RenderWindow& window, const TextureManager& manager) const;
 	void clicked(sf::Event::MouseButtonReleased mouse_event, const Board& board) const;
 
 private:

@@ -9,7 +9,6 @@ public:
 	Button(sf::Vector2f top_left);
 
 	bool clicked(sf::Event::MouseButtonReleased mouse_pos) const;
-	void draw(sf::RenderWindow& window) const;
 	sf::Vector2f getTopLeft() const;
 
 private:

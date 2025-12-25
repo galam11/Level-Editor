@@ -16,16 +16,16 @@ void ClearButton::clicked(sf::Event::MouseButtonReleased mouse_event, Board& boa
 	}
 }
 
-void ClearButton::draw(sf::RenderWindow& window) const
+void ClearButton::draw(sf::RenderWindow& window, const TextureManager& texture_manager) const
 {
-	m_button.draw(window);
+	sf::RectangleShape rect;
 
-	sf::RectangleShape shape;
-	shape.setFillColor(sf::Color::Red);
+	rect.setPosition(m_button.getTopLeft());
+	rect.setFillColor(sf::Color::White);
 
-	shape.setPosition(m_button.getTopLeft());
-	shape.setSize(sf::Vector2f(10.f,10.f));
-	
-	window.draw(shape);
-	// todo unique draw logic for ClearButton
+	rect.setSize(BUTTON_SIZE);
+
+	rect.setTexture(texture_manager.getClearButtonTexture());
+
+	window.draw(rect);
 }
