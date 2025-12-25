@@ -16,6 +16,7 @@ void Controller::run()
 	while (m_window.isOpen())
 	{
 		while (const auto event = m_window.pollEvent())
+
 			event->visit([this](const auto& e) { handleEvent(e); });
 
 		m_window.clear();

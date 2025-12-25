@@ -1,55 +1,46 @@
 #include "TextureManager.h"
 #include "macros.h"
-#include <SFML/Graphics.hpp>
+#include <iostream>
 
-TextureManager::TextureManager() :
-	m_playerTexture				("player.png"),
-	m_enemyTexture				("enemy.png"),
-	m_coinTexture				("coin.png"),
-	m_floorTexture				("floor.png"),
-	m_brakableFloorTexture		("breakable_floor.png"),
-	m_ladderTexture				("ladder.png"),
-	m_railTexture				("rail.png"),
-	m_saveBtnTexture			("save_button.png"),
-	m_clearBtnTexture			("clear_button.png")
-{ }
-
-const sf::Texture* TextureManager::getTexture(const char id) const
-{
-	switch (id)
-	{
-	case PLAYER:
-		return &m_playerTexture;
-
-	case ENEMY:
-		return &m_enemyTexture;
-
-	case COIN:
-		return &m_coinTexture;
-
-	case FLOOR:
-		return &m_floorTexture;
-
-	case BREAKABLE_FLOOR:
-		return &m_brakableFloorTexture;
-
-	case LADDER:
-		return &m_ladderTexture;
-
-	case RAIL:
-		return &m_railTexture;
-
-	default: 
-		return nullptr;
-	}
+TextureManager::TextureManager() {
+    m_textures[PLAYER] = load("player.png");
+    m_textures[ENEMY] = load("enemy.png");
+    m_textures[COIN] = load("coin.png");
+    m_textures[FLOOR] = load("floor.png");
+    m_textures[BREAKABLE_FLOOR] = load("breakable_floor.png");
+    m_textures[LADDER] = load("ladder.png");
+    m_textures[RAIL] = load("rail.png");
+    m_textures[ENEMY] = load("empty.png");
 }
 
-const sf::Texture* TextureManager::getSaveBtnTexture() const
-{
-	return &m_saveBtnTexture;
+sf::Texture TextureManager::load(const std::string& filename) {
+    sf::Texture temp;
+    if (!temp.loadFromFile(filename)) {
+        std::cerr << "Error loading :" << filename << std::endl;
+    }
+
+    return temp;
 }
 
-const sf::Texture* TextureManager::getClearBtnTexture() const
+const sf::Texture* TextureManager::getTexture(const char id) const {
+    auto it = m_textures.find(id);
+    if (it != m_textures.end()) {
+        return &(it->second);
+    }
+    return nullptr;
+}
+
+const sf::Texture* TextureManager::getButtonTexture() const
 {
-	return &m_clearBtnTexture;
+    return &m_buttonTexture;
+}
+
+const sf::Texture* TextureManager::getClearButtonTexture() const
+{
+    return &m_clearButtonTexture;
+}
+
+const sf::Texture* TextureManager::getSaveButtonTexture() const
+{
+    return &m_saveButtonTexture;
 }
