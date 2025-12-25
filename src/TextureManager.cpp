@@ -10,6 +10,7 @@ TextureManager::TextureManager() {
     m_textures[BREAKABLE_FLOOR] = load("breakable_floor.png");
     m_textures[LADDER]          = load("ladder.png");
     m_textures[RAIL]            = load("rail.png");
+    m_textures[EMPTY]           = load("empty.png");
 
 	m_buttonTexture             = load("button.png");
 	m_clearButtonTexture        = load("clear_button.png");

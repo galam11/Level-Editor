@@ -117,9 +117,12 @@ void Board::draw(sf::RenderWindow& window, const TextureManager& texture_manager
 
 	rect.setPosition(m_position);
 	rect.setSize({ m_width * CELL_SIZE , m_height * CELL_SIZE });
+
+
 	rect.setFillColor(sf::Color(50,50,50));
 	
 	window.draw(rect);
+
 
 	rect.setFillColor(sf::Color::White);
 	rect.setSize({ CELL_SIZE, CELL_SIZE });

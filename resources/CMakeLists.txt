@@ -7,6 +7,7 @@ configure_file ("floor.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("breakable_floor.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("ladder.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("rail.png" ${CMAKE_BINARY_DIR} COPYONLY)
+configure_file ("empty.png" ${CMAKE_BINARY_DIR} COPYONLY)
 
 configure_file ("button.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("clear_button.png" ${CMAKE_BINARY_DIR} COPYONLY)
