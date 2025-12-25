@@ -20,9 +20,9 @@ void Controller::run()
 
 		m_window.clear();
 
-		m_board.draw(m_window);
-		m_toolBar.draw(m_window);
-		m_currser.draw(m_window);
+		m_board.draw(m_window, m_textureManager);
+		m_toolBar.draw(m_window, m_textureManager);
+		m_currser.draw(m_window, m_textureManager);
 
 		m_window.display();
 	}
@@ -33,7 +33,7 @@ void Controller::handleEvent(const sf::Event::Closed& event)
 	m_window.close();
 }
 
-void Controller::draw()
+void Controller::applyActiveToolAtCursor()
 {
 	auto pos = m_currser.getPosition();
 	if (pos != sf::Vector2i(-1, -1))
@@ -53,7 +53,7 @@ void Controller::handleEvent(const sf::Event::MouseMoved& event)
 	m_currser.updatePosition(event, m_board);
 
 	if (m_mouseHeld)
-		draw();
+		applyActiveToolAtCursor();
 }
 
 void Controller::handleEvent(const sf::Event::MouseButtonPressed& event)
@@ -61,7 +61,7 @@ void Controller::handleEvent(const sf::Event::MouseButtonPressed& event)
 	if (event.button == sf::Mouse::Button::Left)
 	{
 		m_mouseHeld = true;
-		draw();
+		applyActiveToolAtCursor();
 	}
 }
 

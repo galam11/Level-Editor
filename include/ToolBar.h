@@ -14,7 +14,7 @@ public:
 	ToolBar(sf::Vector2f topLeft);
 	
 	void clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board);
-	void draw(sf::RenderWindow& window) const;
+	void draw(sf::RenderWindow& window, const TextureManager& texture_manager) const;
 	char getActiveButtonID() const;
 private:
 	std::vector<ObjectButton> m_objectButtons;

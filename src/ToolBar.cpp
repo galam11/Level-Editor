@@ -36,7 +36,7 @@ void ToolBar::clicked(sf::Event::MouseButtonReleased mouseEvent, Board& board)
 	m_saveButton.clicked(mouseEvent, board);
 }
 
-void ToolBar::draw(sf::RenderWindow& window) const
+void ToolBar::draw(sf::RenderWindow& window, const TextureManager& texture_manager) const
 {
 	for (int i = 0; i < m_objectButtons.size(); i++)
 		m_objectButtons[i].draw(window);

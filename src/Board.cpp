@@ -4,7 +4,8 @@
 
 #include <iostream>
 
-Board::Board(sf::Vector2f top_left) : m_topLeft(top_left){}
+Board::Board(sf::Vector2f position) : 
+	m_position(position){ }
 
 void Board::save() const
 {
@@ -41,7 +42,7 @@ bool Board::load()
 	m_boardData.resize(m_height);
 	for (int i = 0; i < m_height; i++)
 	{
-		char input = fileInput.get();
+		char input = (char)fileInput.get();
 		while (input != '\n' && !fileInput.eof())
 		{
 			m_boardData[i].push_back(input);
@@ -64,13 +65,10 @@ bool Board::load()
 void Board::clear()
 {
 	m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
-	sf::RectangleShape rect;
-	
 }
 
 void Board::createEmptyBoard()
 {
-
 	float height, width;
 	std::cout << "Enter board height: ";
 	std::cin >> height;
@@ -101,24 +99,21 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 sf::Vector2i Board::mouseToGridLocation(const sf::Event::MouseMoved& event) const
 {
-	if (event.position.x < (int)m_topLeft.x || event.position.y < (int)m_topLeft.y)
-		return sf::Vector2i(-1, -1);
-
 	auto pos = sf::Vector2i(
-		(event.position.x - (int)m_topLeft.x) / CELL_SIZE,
-		(event.position.y - (int)m_topLeft.y) / CELL_SIZE
+		(event.position.x - (int)m_position.x) / CELL_SIZE,
+		(event.position.y - (int)m_position.y) / CELL_SIZE
 	);
 
-	if (inBounds(pos))
+	if (inBounds(pos) && !(event.position.x < (int)m_position.x || event.position.y < (int)m_position.y))
 		return pos;
 	return sf::Vector2i(-1, -1);
 }
 
-void Board::draw(sf::RenderWindow& window)
+void Board::draw(sf::RenderWindow& window, const TextureManager& texture_manager)
 {
 	sf::RectangleShape rect;
 
-	rect.setPosition(m_topLeft);
+	rect.setPosition(m_position);
 	rect.setSize({ m_width * CELL_SIZE , m_height * CELL_SIZE });
 	rect.setFillColor(sf::Color(50,50,50));
 	
@@ -131,12 +126,11 @@ void Board::draw(sf::RenderWindow& window)
 	{
 		for (int y = 0; y < m_height; y++)
 		{
-			// get texture
-
 			if (m_boardData[y][x] == EMPTY)
 				continue;
 
-			rect.setPosition(m_topLeft + sf::Vector2f((float) x * CELL_SIZE, (float) y * CELL_SIZE));
+			rect.setTexture(texture_manager.getTexture(m_boardData[y][x]));
+			rect.setPosition(m_position + sf::Vector2f((float) x * CELL_SIZE, (float) y * CELL_SIZE));
 			window.draw(rect);
 		}
 	}

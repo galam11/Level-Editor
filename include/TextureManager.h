@@ -21,7 +21,6 @@ private:
 	const sf::Texture m_brakableFloorTexture;
 	const sf::Texture m_ladderTexture;
 	const sf::Texture m_railTexture;
-	const sf::Texture m_emptyTexture;
 	const sf::Texture m_saveBtnTexture;
 	const sf::Texture m_clearBtnTexture;
 };

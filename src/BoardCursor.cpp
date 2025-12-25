@@ -1,10 +1,11 @@
 #include "BoardCursor.h"
 #include <SFML/Graphics.hpp>
+
 #include "Board.h"
 #include "macros.h"
 
 
-void BoardCursor::draw(sf::RenderWindow& window) const
+void BoardCursor::draw(sf::RenderWindow& window, const TextureManager& texture_manager) const
 {
 	if (m_position == sf::Vector2i(-1, -1)) return;
 

@@ -2,12 +2,13 @@
 #include <SFML/Graphics.hpp>
 
 class Board;
+class TextureManager;
 
 class BoardCursor
 {
 public:
 	BoardCursor() = default;
-	void draw(sf::RenderWindow& window) const;
+	void draw(sf::RenderWindow& window, const TextureManager& texture_manager) const;
 	void updatePosition(const sf::Event::MouseMoved& event, const Board& board);
 
 	const sf::Vector2i& getPosition() const;

@@ -21,12 +21,13 @@ private:
 	
 	void handleEvent(const sf::Event::Closed& event);
 
-	void draw();
+	void applyActiveToolAtCursor();
 
 	sf::RenderWindow m_window;
 	ToolBar m_toolBar;
 	Board m_board;
 	BoardCursor m_currser;
+	const TextureManager m_textureManager;
 
 	bool m_mouseHeld = false;
 };

@@ -1,5 +1,6 @@
 #include "TextureManager.h"
 #include "macros.h"
+#include <SFML/Graphics.hpp>
 
 TextureManager::TextureManager() :
 	m_playerTexture				("player.png"),
@@ -9,7 +10,6 @@ TextureManager::TextureManager() :
 	m_brakableFloorTexture		("breakable_floor.png"),
 	m_ladderTexture				("ladder.png"),
 	m_railTexture				("rail.png"),
-	m_emptyTexture				("empty.png"),
 	m_saveBtnTexture			("save_button.png"),
 	m_clearBtnTexture			("clear_button.png")
 { }
