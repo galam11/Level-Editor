@@ -92,8 +92,6 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 		if (value == PLAYER)
 		{
-			std::cout << "Setting player location to: " << pos.x << ", " << pos.y << std::endl;
-			std::cout << "Previous player location: " << m_playerLocation.x << ", " << m_playerLocation.y << std::endl;
 			if (m_playerLocation != sf::Vector2i(-1, -1) && m_boardData[m_playerLocation.y][m_playerLocation.x] == PLAYER)
 				m_boardData[m_playerLocation.y][m_playerLocation.x] = EMPTY;
 			m_playerLocation = pos;
