@@ -15,6 +15,8 @@ TextureManager::TextureManager() {
 	m_buttonTexture             = load("button.png");
 	m_clearButtonTexture        = load("clear_button.png");
 	m_saveButtonTexture         = load("save_button.png");
+
+	m_textures[FLOOR].setRepeated(true);
 }
 
 sf::Texture TextureManager::load(const std::string& filename) {

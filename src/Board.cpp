@@ -113,16 +113,18 @@ sf::Vector2i Board::mouseToGridLocation(const sf::Event::MouseMoved& event) cons
 
 void Board::draw(sf::RenderWindow& window, const TextureManager& texture_manager)
 {
+	sf::RectangleShape back_round_rect;
+	back_round_rect.setPosition(m_position);
+	back_round_rect.setSize({ m_width * CELL_SIZE , m_height * CELL_SIZE });
+	back_round_rect.setTextureRect(sf::IntRect(sf::Vector2i(0,0), sf::Vector2i( m_width * CELL_SIZE , m_height * CELL_SIZE )));
+	back_round_rect.setFillColor(sf::Color(40,40,40));
+	back_round_rect.setTexture(texture_manager.getTexture(FLOOR));
+	window.draw(back_round_rect);
+
 	sf::RectangleShape rect;
 
 	rect.setPosition(m_position);
 	rect.setSize({ m_width * CELL_SIZE , m_height * CELL_SIZE });
-
-
-	rect.setFillColor(sf::Color(50,50,50));
-	
-	window.draw(rect);
-
 
 	rect.setFillColor(sf::Color::White);
 	rect.setSize({ CELL_SIZE, CELL_SIZE });
