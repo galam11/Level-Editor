@@ -65,16 +65,15 @@ bool Board::load()
 
 void Board::clear()
 {
+	m_playerLocation = sf::Vector2i(-1, -1);
 	m_boardData = std::vector<std::vector<char>>(m_height, std::vector<char>(m_width, EMPTY));
 }
 
 void Board::createEmptyBoard()
 {
 	float height, width;
-	std::cout << "Enter board height: ";
-	std::cin >> height;
-	std::cout << "Enter board width: ";
-	std::cin >> width;
+	std::cout << "Enter board size (height) (width): ";
+	std::cin >> height >> width;
 
 	if (width > 0 && height > 0)
 	{
@@ -92,7 +91,7 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 		if (value == PLAYER)
 		{
-			if (m_playerLocation != sf::Vector2i(-1, -1) && m_boardData[m_playerLocation.y][m_playerLocation.x] == PLAYER)
+			if (m_playerLocation != sf::Vector2i(-1, -1))
 				m_boardData[m_playerLocation.y][m_playerLocation.x] = EMPTY;
 			m_playerLocation = pos;
 		}
