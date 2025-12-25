@@ -46,10 +46,11 @@ bool Board::load()
 		while (input != '\n' && !fileInput.eof())
 		{
 			m_boardData[i].push_back(input);
-			input = fileInput.get();
-
 			if (input == PLAYER) 
+			{
 				m_playerLocation = sf::Vector2i(m_boardData[i].size() - 1, i);
+			}
+			input = fileInput.get();
 		}
 	}
 	m_width = m_boardData[0].size();
@@ -91,7 +92,9 @@ void Board::setCell(sf::Vector2i pos, char value)
 
 		if (value == PLAYER)
 		{
-			if (m_boardData[m_playerLocation.y][m_playerLocation.x] == PLAYER)
+			std::cout << "Setting player location to: " << pos.x << ", " << pos.y << std::endl;
+			std::cout << "Previous player location: " << m_playerLocation.x << ", " << m_playerLocation.y << std::endl;
+			if (m_playerLocation != sf::Vector2i(-1, -1) && m_boardData[m_playerLocation.y][m_playerLocation.x] == PLAYER)
 				m_boardData[m_playerLocation.y][m_playerLocation.x] = EMPTY;
 			m_playerLocation = pos;
 		}

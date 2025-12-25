@@ -3,7 +3,7 @@
 #include "macros.h"
 
 Controller::Controller() : 
-	m_window(sf::VideoMode(WINDOW_SIZE), "Level Editor"), 
+	m_window(sf::VideoMode(WINDOW_SIZE), "Level Editor", sf::Style::Titlebar | sf::Style::Close),
 	m_toolBar(TOOL_BAR_POS),
 	m_board(BOARD_POS)
 {

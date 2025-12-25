@@ -25,5 +25,5 @@ private:
 	int m_width = 1;
 	int m_height = 1;
 
-	sf::Vector2i m_playerLocation;
+	sf::Vector2i m_playerLocation = sf::Vector2i(-1, -1);
 };

@@ -31,28 +31,24 @@ void ObjectButton::draw(sf::RenderWindow& window, const TextureManager& texture_
 {
 	sf::RectangleShape rect;
 
-
 	rect.setTexture(texture_manager.getButtonTexture(), true);
 	rect.setPosition(m_button.getTopLeft() + BUTTON_SIZE / 2.f);
 	rect.setOrigin(BUTTON_SIZE / 2.f);
-
-	rect.setFillColor(sf::Color::White);
+	
 	rect.setSize(BUTTON_SIZE);
-    
-    if (m_active)
-    {
-        rect.setFillColor(sf::Color::White);
-	}
-    else
-    {
-        rect.setFillColor(sf::Color(225, 225, 225));
-    }
 
 	
+    if (m_active)
+        rect.setFillColor(sf::Color::Blue);
+	else 
+		rect.setFillColor(sf::Color::White);
+
+
 	window.draw(rect);
 
 	rect.setTexture(texture_manager.getTexture(m_type), true);
 	rect.scale(sf::Vector2f(0.7f, 0.7f));
-	
+	rect.setFillColor(sf::Color::White);
+
 	window.draw(rect);
 }
